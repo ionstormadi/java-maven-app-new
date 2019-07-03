@@ -21,8 +21,10 @@ pipeline {
             steps {
                 
                 sh '''
-                whoami
+                
                 docker run -i owasp/zap2docker-stable zap-cli quick-scan --self-contained --start-options '-config api.disablekey=true' http://\$(ip -f inet -o addr show docker0 | awk '{print \$4}'| cut -d '/' -f 1):8080/WebApp/ -l Medium
+                if echo "$x" | grep "High";then echo "failed";else true; fi
+                
                 '''
             }
         }
