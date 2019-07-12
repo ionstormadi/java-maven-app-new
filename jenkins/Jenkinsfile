@@ -17,6 +17,11 @@ pipeline {
                 sh 'mvn -B -DskipTests clean package'
             }
         }
+        stage('Deploy-To-Tomcat'){
+            steps{
+                sh 'cp target/*.war /opt/tomcat/webapps/WebApp.war'
+            }
+        }
         
         stage('DAST') {
             steps {
