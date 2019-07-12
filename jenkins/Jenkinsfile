@@ -19,6 +19,7 @@ pipeline {
         }
         stage('Deploy-To-Tomcat'){
             steps{
+                sh 'whoami'
                 sh 'cp target/*.war /opt/tomcat/webapps/WebApp.war'
             }
         }
